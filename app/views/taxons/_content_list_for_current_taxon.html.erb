@@ -10,27 +10,55 @@
             <p><%= taxon.description %></p>
           <% end %>
 
+          <ol class="high-volume">
+            <% tagged_content.each_with_index do |content_item, index| %>
+              <% if mainstream_formats.include? content_item.content_store_document_type %>
+                <li>
+                  <h2>
+                    <%= link_to(
+                      content_item.title,
+                      content_item.base_path,
+                      data: {
+                        track_category: is_grid ? 'navGridLeafLinkClicked' : 'navLeafLinkClicked',
+                        track_action: index + 1,
+                        track_label: content_item.base_path,
+                        track_options: {
+                            dimension28: tagged_content.size.to_s,
+                            dimension29: content_item.title,
+                        },
+                        module: 'track-click',
+                      }
+                      ) %>
+                  </h2>
+                  <p><%= content_item.description %></p>
+                </li>
+              <% end %>
+            <% end %>
+          </ol>
+
           <ol>
             <% tagged_content.each_with_index do |content_item, index| %>
-              <li>
-                <h2>
-                  <%= link_to(
-                    content_item.title,
-                    content_item.base_path,
-                    data: {
-                      track_category: is_grid ? 'navGridLeafLinkClicked' : 'navLeafLinkClicked',
-                      track_action: index + 1,
-                      track_label: content_item.base_path,
-                      track_options: {
-                          dimension28: tagged_content.size.to_s,
-                          dimension29: content_item.title,
-                      },
-                      module: 'track-click',
-                    }
-                    ) %>
-                </h2>
-                <p><%= content_item.description %></p>
-              </li>
+              <% unless mainstream_formats.include? content_item.content_store_document_type %>
+                <li>
+                  <h2>
+                    <%= link_to(
+                      content_item.title,
+                      content_item.base_path,
+                      data: {
+                        track_category: is_grid ? 'navGridLeafLinkClicked' : 'navLeafLinkClicked',
+                        track_action: index + 1,
+                        track_label: content_item.base_path,
+                        track_options: {
+                            dimension28: tagged_content.size.to_s,
+                            dimension29: content_item.title,
+                        },
+                        module: 'track-click',
+                      }
+                      ) %>
+                  </h2>
+                  <p><%= content_item.description %></p>
+                </li>
+              <% end %>
             <% end %>
           </ol>
         </div>
