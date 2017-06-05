@@ -1,10 +1,4 @@
 class Config
-  def self.guidance_document_collections
-    @guidance_document_collections ||= JSON.parse(
-      load_config('guidance_document_collections.json')
-    )
-  end
-
   def self.content_mappings
     @content_item_mappings ||= YAML.load(
       load_config('content_mappings.json')

@@ -13,15 +13,10 @@ class TaggedContent
   def fetch
     search_response
       .documents
-      .select { |document| tagged_content_validator.valid?(document) }
       .select { |document| hide_from_search_validator.valid?(document) }
   end
 
 private
-
-  def tagged_content_validator
-    @tagged_content_validator ||= TaggedContentValidator.new
-  end
 
   def hide_from_search_validator
     @hide_from_search_validator ||= HideFromSearchValidator.new(base_path)
