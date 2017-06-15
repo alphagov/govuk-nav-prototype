@@ -13,5 +13,6 @@
       <%= render partial: 'components/beta_banner' %>
       <%= content_for?(:content) ? yield(:content) : yield %>
 		</div>
+    <%= javascript_include_tag "application" %>
   </body>
 </html>
