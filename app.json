@@ -3,19 +3,19 @@
   "repository": "https://github.com/alphagov/govuk-nav-prototype",
   "env": {
     "GOVUK_APP_DOMAIN": {
-      "value": "www.gov.uk"
+      "value": "www-origin.integration.publishing.service.gov.uk"
     },
     "GOVUK_WEBSITE_ROOT": {
-      "value": "https://www.gov.uk"
+      "value": "https://www-origin.integration.publishing.service.gov.uk"
     },
     "PLEK_SERVICE_CONTENT_STORE_URI": {
-      "value": "https://www.gov.uk/api"
+      "value": "https://www-origin.integration.publishing.service.gov.uk/api"
     },
     "PLEK_SERVICE_SEARCH_URI": {
-      "value": "https://www.gov.uk/api"
+      "value": "https://www-origin.integration.publishing.service.gov.uk/api"
     },
     "PLEK_SERVICE_RUMMAGER_URI": {
-      "value": "https://www.gov.uk/api"
+      "value": "https://www-origin.integration.publishing.service.gov.uk/api"
     },
     "PLEK_SERVICE_STATIC_URI": {
       "value": "assets.digital.cabinet-office.gov.uk"
