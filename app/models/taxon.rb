@@ -43,6 +43,12 @@ class Taxon
     children.sort_by(&:title)
   end
 
+  def great_grandchildren?
+    child_taxons.any? do |child_taxon|
+      Taxon.find(child_taxon.base_path).grandchildren?
+    end
+  end
+
   def grandchildren?
     return false unless children?
 

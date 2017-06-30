@@ -2,6 +2,7 @@ class TaxonPresenter
   GRID = :grid
   ACCORDION = :accordion
   LEAF = :leaf
+  SUBLIST = :sublist
 
   attr_reader :taxon
   delegate(
@@ -10,6 +11,7 @@ class TaxonPresenter
     :description,
     :base_path,
     :tagged_content,
+    :children?,
     :grandchildren?,
     :child_taxons,
     :most_popular_content,
@@ -22,9 +24,14 @@ class TaxonPresenter
   end
 
   def rendering_type
-    return GRID if taxon.grandchildren?
+    return GRID if taxon.great_grandchildren?
+    return ACCORDION if taxon.grandchildren?
+    return LEAF if taxon.children?
+    SUBLIST
+  end
 
-    taxon.children? ? ACCORDION : LEAF
+  def renders_as_grid?
+    rendering_type == GRID
   end
 
   def renders_as_accordion?
@@ -35,8 +42,8 @@ class TaxonPresenter
     rendering_type == LEAF
   end
 
-  def renders_as_grid?
-    rendering_type == GRID
+  def renders_as_sublist?
+    rendering_type == SUBLIST
   end
 
   def accordion_content
