@@ -33,21 +33,6 @@
               </li>
             <% end %>
           </ol>
-
-          <% if presented_taxon.children? %>
-            <% presented_taxon.child_taxons.each do |child_taxon| %>
-              <h2><%= child_taxon.title %></h2>
-              <ol>
-                <% child_taxon.tagged_content.each do |content_item| %>
-                  <li>
-                    <%= link_to(content_item.title, content_item.base_path) %>
-
-                    <p><%= content_item.description %></p>
-                  </li>
-                <% end %>
-              </ol>
-            <% end %>
-          <% end %>
         </div>
       </div>
     </div>
