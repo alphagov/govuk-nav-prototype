@@ -12,7 +12,13 @@ The `master` branch is automatically deployed to https://govuk-nav-prototype.her
 
 ## Nomenclature
 
-- **Taxon**: a single node within a taxonomy that content items are tagged to.
+- **Taxon**: a single node within a taxonomy that content items are tagged to;
+- **Grid**: A page style used for **taxons** that have grandchildren;
+  - https://govuk-nav-prototype.herokuapp.com/education
+- **Accordion**: A page style used for **taxons** that have children but not grandchildren;
+  - https://govuk-nav-prototype.herokuapp.com/education/funding-and-finance-for-students
+- **Leaf**: A page style used for **taxons** that don't have children.
+  - https://govuk-nav-prototype.herokuapp.com/student-finance
 
 ## Technical documentation
 
@@ -35,6 +41,17 @@ use, such as breadcrumbs and related links.
 We display the GOV.UK homepage, currently being rendered by `frontend`, by also
 fetching its HTML. In this case, we show it as-is from production without
 parsing the HTML.
+
+### Middleware
+
+#### Content Item Appender
+
+This middleware is responsible to make an http request to the [Content Store](https://github.com/alphagov/content-store), and stores the result in the request env hash.
+This allows us to make routing decisions based on the content store item.
+
+#### Path Logger
+
+This middleware logs routes visited to help in user lab analysis.
 
 ### Dependencies
 
